@@ -1,0 +1,14 @@
+default: &default
+  referer: <YOUR REFERER URL>
+
+development:
+  <<: *default
+  api_key: <YOUR OPENROUTER API KEY FOR DEVELOPMENT>
+
+test:
+  <<: *default
+  api_key: <YOUR OPENROUTER API KEY FOR TEST>
+
+production:
+  <<: *default
+  api_key: <YOUR OPENROUTER API KEY FOR PRODUCTION>
