@@ -2,6 +2,7 @@
 
 require "spec_helper"
 require "roseflow/open_router/config"
+require "fast_jsonparser"
 
 Anyway::Settings.use_local_files = true
 provider_config = Roseflow::OpenRouter::Config.new
@@ -26,13 +27,16 @@ module Roseflow
       end
     end
 
-    describe "#completion" do
+    # Making model inference through Provider object is now deprecated.
+    #
+    # To Be Removed.
+    describe "#completion", skip: true do
       context "default" do
       end
 
       context "streaming" do
         let(:model) do
-          data = JSON.parse(File.read("spec/fixtures/models/gpt-3.5-turbo-16k.json"))
+          data = FastJsonparser.parse(File.read("spec/fixtures/models/gpt-3.5-turbo-16k.json"))
           Roseflow::OpenRouter::Model.new(data, provider)
         end
 

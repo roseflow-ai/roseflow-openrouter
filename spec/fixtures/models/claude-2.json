@@ -1,0 +1,8 @@
+{
+  "id": "anthropic/claude-2",
+  "pricing": {
+    "prompt": "0.00001102",
+    "completion": "0.00003268"
+  },
+  "context_length": 100000
+}

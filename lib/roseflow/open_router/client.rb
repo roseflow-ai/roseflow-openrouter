@@ -4,17 +4,18 @@ require "faraday"
 require "faraday/retry"
 require "roseflow/open_router/config"
 require "roseflow/open_router/model"
-
-FARADAY_RETRY_OPTIONS = {
-  max: 3,
-  interval: 0.05,
-  interval_randomness: 0.5,
-  backoff_factor: 2,
-}
+require "fast_jsonparser"
 
 module Roseflow
   module OpenRouter
     class Client
+      FARADAY_RETRY_OPTIONS = {
+        max: 3,
+        interval: 0.05,
+        interval_randomness: 0.5,
+        backoff_factor: 2,
+      }
+
       def initialize(config = Config.new, provider = nil)
         @config = config
         @provider = provider
@@ -22,9 +23,21 @@ module Roseflow
 
       def models
         response = connection.get("/api/v1/models")
-        body = JSON.parse(response.body)
+        body = FastJsonparser.parse(response.body)
         body.fetch("data", []).map do |model|
           OpenRouter::Model.new(model, self)
+        end
+      end
+
+      def post(operation, &block)
+        connection.post(operation.path) do |request|
+          request.body = operation.body
+
+          if operation.stream
+            request.options.on_data = Proc.new do |chunk|
+              yield chunk
+            end
+          end
         end
       end
 
@@ -84,7 +97,7 @@ module Roseflow
         return chunk unless chunk.match(/{.*}/)
 
         chunk.scan(/{.*}/).map do |json|
-          JSON.parse(json).dig("choices", 0, "delta", "content")
+          FastJsonparser.parse(json).dig("choices", 0, "delta", "content")
         end.join("")
       end
     end

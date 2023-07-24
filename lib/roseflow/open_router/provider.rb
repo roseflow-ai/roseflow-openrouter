@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require "roseflow/open_router/client"
+require "roseflow/open_router/config"
+require "roseflow/open_router/model_repository"
+
 module Roseflow
   module OpenRouter
     class Provider
@@ -16,13 +20,7 @@ module Roseflow
       end
 
       def completion(model:, prompt:, **options)
-        streaming = options.fetch(:streaming, false)
-
-        if streaming
-          client.streaming_completion(model: model, prompt: prompt, **options)
-        else
-          client.completion(model: model, prompt: prompt, **options)
-        end
+        raise DeprecationError, "This method is deprecated. Please use Model operations instead."
       end
 
       private

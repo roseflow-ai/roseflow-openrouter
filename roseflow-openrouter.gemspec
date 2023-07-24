@@ -34,6 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "dry-struct"
   spec.add_dependency "faraday"
   spec.add_dependency "faraday-retry"
+  spec.add_dependency "fast_jsonparser", "~> 0.6.0"
 
   spec.add_development_dependency "awesome_print"
   spec.add_development_dependency "pry"

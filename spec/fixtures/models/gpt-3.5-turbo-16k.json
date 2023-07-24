@@ -1,8 +1,8 @@
 {
   "id": "openai/gpt-3.5-turbo-16k",
   "pricing": {
-      "prompt": "0.000003",
-      "completion": "0.000004"
+    "prompt": "0.000003",
+    "completion": "0.000004"
   },
   "context_length": 16383
 }
