@@ -58,7 +58,7 @@ module Roseflow
       end
 
       def client
-        provider_.client
+        provider_
       end
     end
   end
