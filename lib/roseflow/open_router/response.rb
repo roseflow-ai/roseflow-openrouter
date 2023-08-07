@@ -44,7 +44,7 @@ module Roseflow
       end
 
       attribute? :finish_reason, Types::String
-      attribute :index, Types::Integer
+      attribute? :index, Types::Integer
 
       def to_s
         return message.content if message

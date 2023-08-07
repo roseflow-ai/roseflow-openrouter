@@ -2,6 +2,7 @@
 
 require "faraday"
 require "faraday/retry"
+require "faraday/typhoeus"
 require "roseflow/open_router/config"
 require "roseflow/open_router/model"
 require "fast_jsonparser"
@@ -24,7 +25,7 @@ module Roseflow
       def models
         response = connection.get("/api/v1/models")
         body = FastJsonparser.parse(response.body)
-        body.fetch("data", []).map do |model|
+        body.fetch(:data, []).map do |model|
           OpenRouter::Model.new(model, self)
         end
       end
@@ -89,7 +90,7 @@ module Roseflow
           faraday.request :authorization, "Bearer", -> { config.api_key }
           faraday.request :json
           faraday.request :retry, FARADAY_RETRY_OPTIONS
-          faraday.adapter Faraday.default_adapter
+          faraday.adapter :typhoeus
         end
       end
 
