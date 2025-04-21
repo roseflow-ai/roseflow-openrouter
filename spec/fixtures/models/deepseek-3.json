@@ -1,0 +1,33 @@
+{
+  "id": "deepseek/deepseek-chat-v3-0324",
+  "name": "DeepSeek: DeepSeek V3 0324",
+  "created": 1742824755,
+  "description": "DeepSeek V3, a 685B-parameter, mixture-of-experts model, is the latest iteration of the flagship chat model family from the DeepSeek team.\n\nIt succeeds the [DeepSeek V3](/deepseek/deepseek-chat-v3) model and performs really well on a variety of tasks.",
+  "context_length": 64000,
+  "architecture": {
+    "modality": "text->text",
+    "input_modalities": [
+      "text"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "tokenizer": "DeepSeek",
+    "instruct_type": null
+  },
+  "pricing": {
+    "prompt": "0.00000027",
+    "completion": "0.0000011",
+    "request": "0",
+    "image": "0",
+    "web_search": "0",
+    "internal_reasoning": "0",
+    "input_cache_read": "0.00000007"
+  },
+  "top_provider": {
+    "context_length": 64000,
+    "max_completion_tokens": 8192,
+    "is_moderated": false
+  },
+  "per_request_limits": null
+}

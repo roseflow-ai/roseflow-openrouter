@@ -12,6 +12,10 @@ module Roseflow
         @models = provider.client.models
       end
 
+      def count
+        @models.size
+      end
+
       def find(name)
         @models.select { |model| model.name == name }.first
       end

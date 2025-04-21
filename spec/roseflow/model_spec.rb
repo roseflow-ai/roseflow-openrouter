@@ -8,7 +8,7 @@ module Roseflow
     RSpec.describe Model do
       let(:provider) { Roseflow::OpenRouter::Provider.new() }
       let(:model) do
-        data = FastJsonparser.parse(File.read("spec/fixtures/models/gpt-3.5-turbo-16k.json"))
+        data = FastJsonparser.parse(File.read("spec/fixtures/models/xai-grok-3.json"))
         Roseflow::OpenRouter::Model.new(data, provider)
       end
 

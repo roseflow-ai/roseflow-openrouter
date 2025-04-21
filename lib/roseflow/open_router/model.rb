@@ -13,7 +13,7 @@ end
 module Roseflow
   module OpenRouter
     class Model
-      attr_reader :name, :id, :context_length
+      attr_reader :name, :id, :context_length, :description, :architecture, :pricing
 
       def initialize(model, provider)
         @model_ = model
@@ -55,10 +55,13 @@ module Roseflow
         @name = @model_.fetch(:id)
         @id = @model_.fetch(:id)
         @context_length = @model_.fetch(:context_length)
+        @description = @model_.fetch(:description)
+        @architecture = @model_.fetch(:architecture)
+        @pricing = @model_.fetch(:pricing)
       end
 
       def client
-        provider_
+        provider_.client
       end
     end
   end

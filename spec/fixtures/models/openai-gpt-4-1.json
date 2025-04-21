@@ -1,0 +1,34 @@
+{
+  "id": "openai/gpt-4.1",
+  "name": "OpenAI: GPT-4.1",
+  "created": 1744651385,
+  "description": "GPT-4.1 is a flagship large language model optimized for advanced instruction following, real-world software engineering, and long-context reasoning. It supports a 1 million token context window and outperforms GPT-4o and GPT-4.5 across coding (54.6% SWE-bench Verified), instruction compliance (87.4% IFEval), and multimodal understanding benchmarks. It is tuned for precise code diffs, agent reliability, and high recall in large document contexts, making it ideal for agents, IDE tooling, and enterprise knowledge retrieval.",
+  "context_length": 1047576,
+  "architecture": {
+    "modality": "text+image->text",
+    "input_modalities": [
+      "image",
+      "text"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "tokenizer": "GPT",
+    "instruct_type": null
+  },
+  "pricing": {
+    "prompt": "0.000002",
+    "completion": "0.000008",
+    "request": "0",
+    "image": "0",
+    "web_search": "0",
+    "internal_reasoning": "0",
+    "input_cache_read": "0.0000005"
+  },
+  "top_provider": {
+    "context_length": 1047576,
+    "max_completion_tokens": 32768,
+    "is_moderated": true
+  },
+  "per_request_limits": null
+}

@@ -2,7 +2,6 @@
 
 require "faraday"
 require "faraday/retry"
-require "faraday/typhoeus"
 require "roseflow/open_router/config"
 require "roseflow/open_router/model"
 require "fast_jsonparser"
@@ -90,7 +89,7 @@ module Roseflow
           faraday.request :authorization, "Bearer", -> { config.api_key }
           faraday.request :json
           faraday.request :retry, FARADAY_RETRY_OPTIONS
-          faraday.adapter :typhoeus
+          faraday.adapter Faraday.default_adapter
         end
       end
 

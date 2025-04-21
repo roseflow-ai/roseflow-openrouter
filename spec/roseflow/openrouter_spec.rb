@@ -23,49 +23,11 @@ module Roseflow
       it "returns a list of models" do
         VCR.use_cassette("openrouter/models", record: :all) do
           expect(provider.models).to be_a(Roseflow::OpenRouter::ModelRepository)
-        end
-      end
-    end
-
-    # Making model inference through Provider object is now deprecated.
-    #
-    # To Be Removed.
-    describe "#completion", skip: true do
-      context "default" do
-      end
-
-      context "streaming" do
-        let(:model) do
-          data = FastJsonparser.parse(File.read("spec/fixtures/models/gpt-3.5-turbo-16k.json"))
-          Roseflow::OpenRouter::Model.new(data, provider)
-        end
-
-        it "returns a response" do
-          VCR.use_cassette("openrouter/completion/streaming", record: :all) do
-            messages = [
-              { role: "system", content: "Follow user's instructions carefully." },
-              { role: "user", content: "What is the meaning of life?" },
-            ]
-
-            provider.completion(model: model, prompt: messages, streaming: true) do |chunk|
-              expect(chunk).to be_a(String)
-              puts chunk
-            end
-          end
-        end
-
-        it "returns a raw response" do
-          VCR.use_cassette("openrouter/completion/streaming/raw", record: :all) do
-            messages = [
-              { role: "system", content: "Follow user's instructions carefully." },
-              { role: "user", content: "What is the meaning of life?" },
-            ]
-
-            provider.completion(model: model, prompt: messages, streaming: true, raw: true) do |chunk|
-              expect(chunk).to be_a(String)
-              puts chunk
-            end
-          end
+          expect(provider.models.count).to be > 0
+          expect(provider.models.first).to be_a(Roseflow::OpenRouter::Model)
+          puts "Model name: #{provider.models.first.name}"
+          puts "Model description: #{provider.models.first.description}"
+          puts "Model architecture: #{provider.models.first.architecture}"
         end
       end
     end
